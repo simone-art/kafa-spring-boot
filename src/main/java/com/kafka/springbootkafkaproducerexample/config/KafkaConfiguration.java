@@ -2,11 +2,13 @@ package com.kafka.springbootkafkaproducerexample.config;
 
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.ser.std.StringSerializer;
+import com.kafka.springbootkafkaproducerexample.model.User;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.protocol.types.Field;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
 
 import java.util.HashMap;
@@ -27,5 +29,11 @@ public class KafkaConfiguration {
 
 
         return new DefaultKafkaProducerFactory(config);
+    }
+
+    //Código que vai mostrar o producerFactory na tela
+    @Bean
+    public KafkaTemplate<String, User> kafkaTemplate(){
+        return new KafkaTemplate<String, User>(producerFactory());
     }
 }
