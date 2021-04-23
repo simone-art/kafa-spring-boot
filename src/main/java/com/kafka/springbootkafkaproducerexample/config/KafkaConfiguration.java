@@ -18,7 +18,7 @@ import java.util.Map;
 public class KafkaConfiguration {
 
     @Bean
-    public ProducerFactory producerFactory(){
+    public ProducerFactory<String, User> producerFactory(){
 
         Map<String, Object> config = new HashMap<>();
         //9092 é a mesma porta que está sendo usada pelo consumer é so ir lá e verificar
@@ -28,12 +28,12 @@ public class KafkaConfiguration {
         config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
 
 
-        return new DefaultKafkaProducerFactory(config);
+        return new DefaultKafkaProducerFactory<>(config);
     }
 
     //Código que vai mostrar o producerFactory na tela
     @Bean
     public KafkaTemplate<String, User> kafkaTemplate(){
-        return new KafkaTemplate<String, User>(producerFactory());
+        return new KafkaTemplate<>(producerFactory());
     }
 }
