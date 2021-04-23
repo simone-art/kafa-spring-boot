@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserResource {
 
     @Autowired
-    KafkaTemplate<String, String> kafkaTemplate;
+    private KafkaTemplate<String, String> kafkaTemplate;
     private static final String TOPIC= "Kafka_Example";
 
     @GetMapping("/publish/{message}")
