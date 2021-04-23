@@ -13,7 +13,7 @@ public class UserResource {
 
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
-    private static final String TOPIC= "Kafka_Example";
+    private static final String TOPIC= "Kafka_Message";
 
     @GetMapping("/publish/{message}")
     public String post(@PathVariable("message") final String message){
